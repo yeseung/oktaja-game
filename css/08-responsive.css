@@ -1,0 +1,716 @@
+/* ==================================================
+   08-responsive.css (반응형, 다크모드, 접근성)
+   ================================================= */
+
+/* 1. 태블릿 및 모바일 반응형 (768px 이하) */
+@media (max-width: 768px) {
+  /* 로그인 화면 모바일 최적화 */
+  .login-container {
+    padding: 32px 24px;
+    margin: 16px;
+  }
+
+  .game-title h1 {
+    font-size: 2rem;
+  }
+
+  .feature-badges {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .badge {
+    width: 100%;
+    text-align: center;
+    padding: 16px 20px;
+  }
+
+  #player-name {
+    padding: 18px 18px 18px 55px;
+  }
+
+  #join-game-btn {
+    padding: 18px;
+    font-size: 16px;
+  }
+
+  /* 게임 화면 모바일 그리드 재배치 */
+  #game-screen {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    /* 모바일에서는 좌측 사이드바, 메인, 우측 사이드바 세로로 나열 */
+  }
+
+  .left-sidebar {
+    grid-column: 1;
+    grid-row: 2; /* 헤더 다음 */
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
+    max-height: 200px; /* 높이 제한 및 스크롤 */
+  }
+
+  .main-game-content {
+    grid-column: 1;
+    grid-row: 3; /* 좌측 사이드바 다음 */
+  }
+
+  .right-sidebar {
+    grid-column: 1;
+    grid-row: 4; /* 메인 콘텐츠 다음 */
+    border-left: none;
+    border-top: 1px solid #e2e8f0;
+    max-height: 250px;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 15px;
+  }
+
+  .left-sidebar > div,
+  .right-sidebar > div {
+    min-width: 250px;
+  }
+
+  /* 게임 텍스트 및 타이핑 영역 모바일 최적화 */
+  #game-text {
+    font-size: 18px;
+    padding: 20px;
+  }
+
+  #game-text > span {
+    font-size: 18px;
+  }
+
+  #typing-input {
+    font-size: 18px;
+    padding: 16px;
+  }
+
+  #countdown {
+    font-size: 28px;
+  }
+
+  .typing-area {
+    padding: 20px;
+  }
+
+  .progress-stats {
+    font-size: 14px;
+  }
+
+  /* 사이드바 모바일 최적화 */
+  .live-progress-section {
+    min-height: 150px;
+  }
+
+  .players-section,
+  .room-limits,
+  .leaderboard,
+  .today-best-section,
+  .top-rankings-section,
+  .my-today-section {
+    padding: 12px;
+  }
+
+  .player-item {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .live-rank-item,
+  .rank-item {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  /* 채팅 모바일 최적화 */
+  .chat-section {
+    height: 300px;
+    border-radius: 12px;
+  }
+
+  .chat-header {
+    padding: 12px 16px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .chat-input-wrapper {
+    border-radius: 20px;
+    padding: 6px 10px;
+  }
+
+  .chat-input-container {
+    padding: 10px;
+    gap: 6px;
+  }
+
+  #chat-input {
+    font-size: 16px; /* iOS 줌 방지 */
+    padding: 10px 14px;
+  }
+
+  .emoticon-btn,
+  .send-chat-btn,
+  #send-chat-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .emoticon-picker {
+    border-radius: 12px;
+  }
+
+  .emoticon-grid {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+  }
+
+  .message-content {
+    max-width: 240px;
+    font-size: 14px;
+  }
+
+  /* 모바일에서는 아이콘으로 표시 */
+  #send-chat-btn::before {
+    content: "→"; /* 모바일에서는 화살표로 표시 */
+    font-size: 16px;
+  }
+}
+
+/* 2. 소형 모바일 반응형 (480px 이하) */
+@media (max-width: 480px) {
+  /* 로그인 화면 초소형 모바일 */
+  .login-container {
+    padding: 24px 20px;
+  }
+
+  .game-title h1 {
+    font-size: 1.75rem;
+  }
+
+  .game-title p {
+    font-size: 1rem;
+  }
+
+  /* 게임 화면 초소형 모바일 */
+  .main-game-content {
+    padding: 16px;
+  }
+
+  #game-text {
+    padding: 16px;
+    font-size: 16px;
+  }
+
+  #game-text > span {
+    font-size: 16px;
+  }
+
+  #typing-input {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  .typing-area {
+    padding: 16px;
+  }
+
+  #countdown {
+    font-size: 24px;
+  }
+
+  .result-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* 사이드바 초소형 모바일 */
+  .left-sidebar,
+  .right-sidebar {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .left-sidebar > div,
+  .right-sidebar > div {
+    min-width: 200px;
+  }
+
+  .live-progress-section {
+    min-height: 120px;
+  }
+
+  .player-progress-item .player-info {
+    font-size: 12px;
+  }
+
+  .progress-bar-wrapper {
+    height: 10px;
+  }
+
+  /* 채팅 초소형 모바일 */
+  .chat-input-container {
+    padding: 8px;
+  }
+
+  .emoticon-btn,
+  .send-chat-btn,
+  #send-chat-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .message-content {
+    max-width: 200px;
+    padding: 10px 14px;
+  }
+}
+
+/* 3. 다크모드 지원 */
+@media (prefers-color-scheme: dark) {
+  /* 로그인 화면 다크모드 */
+  .login-container {
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .game-title p {
+    color: #94a3b8;
+  }
+
+  #player-name {
+    background: rgba(30, 41, 59, 0.9);
+    border-color: #334155;
+    color: #f1f5f9;
+  }
+
+  #player-name::placeholder {
+    color: #64748b;
+  }
+
+  .connection-status {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: rgba(51, 65, 85, 0.5);
+  }
+
+  #connection-text {
+    color: #94a3b8;
+  }
+
+  .site-info {
+    background: linear-gradient(135deg, #1e293b, #334155);
+    border-color: rgba(51, 65, 85, 0.8);
+  }
+
+  .site-info small {
+    color: #94a3b8;
+  }
+
+  .site-info small:first-child {
+    color: #f1f5f9;
+  }
+
+  /* 게임 화면 다크모드 */
+  .main-game-content {
+    background: #1a202c;
+  }
+
+  .game-header {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+
+  .game-header h2 {
+    color: #f7fafc;
+  }
+
+  .game-info {
+    color: #a0aec0;
+  }
+
+  #waiting-message,
+  #start-game-section,
+  #game-result {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #f7fafc;
+  }
+
+  #game-text {
+    background: #2d3748;
+    border-color: #667eea;
+    color: #f7fafc;
+  }
+
+  #game-text .normal-char {
+    color: #a0aec0;
+  }
+
+  #typing-input {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #f7fafc;
+  }
+
+  .progress-container {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+
+  .progress-stats {
+    color: #f7fafc;
+  }
+
+  /* 사이드바 다크모드 */
+  .left-sidebar,
+  .right-sidebar {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+
+  .room-limits,
+  .players-section,
+  .leaderboard,
+  .today-best-section,
+  .top-rankings-section {
+    background: #1a202c;
+    border-color: #4a5568;
+  }
+
+  .room-limits h3,
+  .players-section h3,
+  .leaderboard h3,
+  .today-best-section h4,
+  .top-rankings-section h4 {
+    color: #f7fafc;
+  }
+
+  .player-item {
+    background: #4a5568;
+    border-color: #718096;
+    color: #f7fafc;
+  }
+
+  .player-item.playing {
+    background: #2d4a3a;
+    border-color: #48bb78;
+  }
+
+  .live-rank-item,
+  .rank-item {
+    background: #4a5568;
+    border-color: #718096;
+    color: #f7fafc;
+  }
+
+  .my-today-section {
+    background: #2a4a5c;
+    border-color: #4299e1;
+  }
+
+  .my-record-card {
+    background: #1a202c;
+    border-color: #4299e1;
+  }
+
+  .limit-label {
+    color: #a0aec0;
+  }
+
+  .rank-player {
+    color: #a0aec0;
+  }
+
+  /* 채팅 다크모드 */
+  .chat-section {
+    background: #1a202c;
+    border-color: #2d3748;
+  }
+
+  .chat-messages-container {
+    background: #2d3748;
+  }
+
+  .chat-message.other-message .message-content {
+    background: #4a5568;
+    color: #f7fafc;
+    border-color: #718096;
+  }
+
+  .chat-input-wrapper {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+
+  .chat-input-wrapper:focus-within {
+    background: #4a5568;
+  }
+
+  #chat-input {
+    color: #f7fafc;
+  }
+
+  #chat-input::placeholder {
+    color: #64748b;
+  }
+
+  .emoticon-picker {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+
+  .emoticon-header {
+    background: #1a202c;
+    color: #f7fafc;
+    border-color: #4a5568;
+  }
+
+  .chat-username {
+    color: #94a3b8;
+  }
+
+  .chat-footer {
+    color: #64748b;
+  }
+
+  .typing-indicator {
+    color: #94a3b8;
+  }
+
+  .typing-dots span {
+    background: #94a3b8;
+  }
+}
+
+/* 4. 접근성 - 모션 감소 선호 시 */
+@media (prefers-reduced-motion: reduce) {
+  /* 전역 애니메이션 비활성화 */
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* 로그인 화면 애니메이션 제거 */
+  #login-screen::before,
+  .decorative-elements::before,
+  .decorative-elements::after,
+  .typing-animation {
+    animation: none;
+  }
+
+  #join-game-btn,
+  .badge,
+  #player-name {
+    transition: none;
+  }
+
+  /* 게임 화면 애니메이션 제거 */
+  #countdown,
+  .completed-char,
+  .current-char,
+  .error-char,
+  .progress-bar-fill {
+    animation: none;
+    transition: none;
+  }
+
+  /* 사이드바 애니메이션 제거 */
+  .live-rank-item,
+  .player-progress-item,
+  .progress-bar-fill {
+    transition: none;
+    animation: none;
+  }
+
+  .final-rank-item.current-player div:first-child::after {
+    animation: none;
+  }
+
+  /* 채팅 애니메이션 제거 */
+  .chat-message,
+  .emoticon-picker,
+  .emoticon-btn,
+  .send-chat-btn,
+  #send-chat-btn {
+    animation: none;
+    transition: none;
+  }
+
+  .typing-dots span {
+    animation: none;
+  }
+
+  .emoticon-item {
+    transition: none;
+  }
+
+  .emoticon-item:hover {
+    transform: none;
+  }
+}
+
+/* 5. 고대비 모드 지원 */
+@media (prefers-contrast: high) {
+  /* 텍스트 대비 강화 */
+  body {
+    color: #000000;
+  }
+
+  /* 버튼 대비 강화 */
+  button {
+    border: 2px solid #000000;
+  }
+
+  /* 입력 필드 대비 강화 */
+  input,
+  textarea {
+    border: 2px solid #000000;
+  }
+
+  /* 링크 대비 강화 */
+  a {
+    color: #0000EE;
+    text-decoration: underline;
+  }
+
+  /* 게임 텍스트 대비 강화 */
+  #game-text .completed-char {
+    background: #00FF00;
+    color: #000000;
+  }
+
+  #game-text .current-char {
+    background: #FFFF00;
+    color: #000000;
+    border: 2px solid #000000;
+  }
+
+  #game-text .error-char {
+    background: #FF0000;
+    color: #FFFFFF;
+  }
+}
+
+/* 6. 인쇄 스타일 */
+@media print {
+  /* 불필요한 요소 숨김 */
+  .chat-section,
+  .left-sidebar,
+  .right-sidebar,
+  .game-header,
+  button {
+    display: none !important;
+  }
+
+  /* 인쇄용 색상 조정 */
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .main-game-content {
+    grid-column: 1 / -1;
+    background: white !important;
+    box-shadow: none !important;
+  }
+
+  /* 페이지 나누기 */
+  #game-result {
+    page-break-before: always;
+  }
+
+  /* 링크 URL 표시 */
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+}
+
+/* 7. 가로 방향 모바일 (landscape) */
+@media (max-width: 768px) and (orientation: landscape) {
+  /* 가로 모드에서 높이 최적화 */
+  .login-container {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .chat-section {
+    height: 250px;
+  }
+
+  .left-sidebar,
+  .right-sidebar {
+    max-height: 150px;
+  }
+
+  #game-text {
+    min-height: 80px;
+  }
+}
+
+/* 8. 초고해상도 디스플레이 (레티나) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* 고해상도 디스플레이에서 선명도 개선 */
+  #game-text {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* 아이콘 및 이미지 선명도 개선 */
+  .emoticon-item,
+  .input-icon {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* 9. 포인터 정밀도에 따른 UI 조정 */
+@media (pointer: coarse) {
+  /* 터치 디바이스용 큰 클릭 영역 */
+  button,
+  .emoticon-btn,
+  .emoticon-item {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .player-item,
+  .live-rank-item,
+  .rank-item {
+    padding: 12px;
+  }
+}
+
+@media (pointer: fine) {
+  /* 마우스/트랙패드용 정밀 UI */
+  .emoticon-item:hover {
+    transform: scale(1.1);
+  }
+
+  .live-rank-item:hover {
+    transform: translateX(3px);
+  }
+}
+
+/* 10. 호버 지원 여부에 따른 조정 */
+@media (hover: none) {
+  /* 터치 디바이스에서 호버 효과 제거 */
+  .emoticon-item:hover,
+  .live-rank-item:hover,
+  button:hover {
+    transform: none;
+    background: inherit;
+  }
+}
+
+@media (hover: hover) {
+  /* 호버 지원 디바이스에서만 호버 효과 적용 */
+  .emoticon-item:hover {
+    background: #f1f5f9;
+    transform: scale(1.2);
+  }
+
+  .live-rank-item:hover {
+    transform: translateX(3px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+}

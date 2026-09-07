@@ -1,0 +1,458 @@
+/* ==================================================
+   03-layout.css (레이아웃, 그리드, 컨테이너 구조)
+   ================================================= */
+
+/* 1. Body 레이아웃 설정 */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 2. 메인 컨테이너 */
+.container {
+  width: 95%;
+  max-width: 1400px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 3. 공통 스크린 레이아웃 */
+.screen {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 4. 유틸리티 클래스 */
+.hidden {
+  display: none !important;
+}
+
+/* 5. 게임 스크린 그리드 레이아웃 */
+#game-screen {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* 좌측(1), 중앙(2), 우측(1) 비율 */
+  grid-template-rows: auto 1fr; /* 헤더 자동, 나머지 영역 1fr */
+  gap: 0;
+  height: 100%;
+}
+
+/* 6. 게임 헤더 - 전체 상단 */
+.game-header {
+  grid-column: 1 / -1; /* 전체 상단 차지 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8f9fa;
+}
+
+.game-header h2 {
+  margin: 0;
+  color: #2d3748;
+  font-size: 1.5rem;
+}
+
+.game-info {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  color: #718096;
+}
+
+/* 7. 좌측 사이드바 레이아웃 */
+.left-sidebar {
+  grid-column: 1; /* 첫 번째 열 */
+  grid-row: 2; /* 두 번째 행 */
+  background: #f8f9fa;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+  gap: 20px;
+}
+
+/* 8. 메인 게임 콘텐츠 영역 */
+.main-game-content {
+  grid-column: 2; /* 두 번째 열 (중앙) */
+  grid-row: 2; /* 두 번째 행 */
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  background: white;
+}
+
+/* 9. 우측 사이드바 레이아웃 */
+.right-sidebar {
+  grid-column: 3; /* 세 번째 열 */
+  grid-row: 2; /* 두 번째 행 */
+  background: #f8f9fa;
+  border-left: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+  gap: 20px;
+}
+
+/* 10. 로그인 스크린 레이아웃 */
+#login-screen {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 11. 로그인 컨테이너 레이아웃 */
+.login-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 48px;
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  max-width: 480px;
+  width: 90%;
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 12. 게임 타이틀 레이아웃 */
+.game-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* 13. 기능 배지 레이아웃 */
+.feature-badges {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+/* 14. 로그인 폼 레이아웃 */
+.login-form {
+  max-width: 100%;
+  margin: 0;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.input-group .input-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 18px;
+  z-index: 2;
+}
+
+/* 15. 연결 상태 레이아웃 */
+.connection-status {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: rgba(248, 250, 252, 0.8);
+  border-radius: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+/* 16. 사이트 정보 레이아웃 */
+.site-info {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 17. 게임 상태 레이아웃 */
+.game-status {
+  text-align: center;
+}
+
+/* 18. 타이핑 영역 레이아웃 */
+.typing-area {
+  background: #f0fff4;
+  padding: 24px;
+  border-radius: 12px;
+  border: 3px solid #48bb78;
+  box-shadow: 0 4px 15px rgba(72, 187, 120, 0.2);
+}
+
+/* 19. 진행률 컨테이너 레이아웃 */
+.progress-container {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.progress-stats {
+  display: flex;
+  justify-content: space-around;
+  font-size: 16px;
+  color: #2d3748;
+  font-weight: 600;
+}
+
+/* 20. 게임 결과 레이아웃 */
+#game-result {
+  background: #f7fafc;
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.result-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* 21. 사이드바 섹션 레이아웃 */
+.room-limits,
+.players-section,
+.leaderboard,
+.live-progress-section,
+.today-best-section,
+.top-rankings-section,
+.my-today-section {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+/* 22. 플레이어 목록 레이아웃 */
+#players-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.player-item {
+  background: #f7fafc;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.player-item .player-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 23. 실시간 진행률 레이아웃 */
+.live-progress-section {
+  background: #f0fff4;
+  border: 3px solid #48bb78;
+  box-shadow: 0 4px 15px rgba(72, 187, 120, 0.2);
+  flex: 1;
+  min-height: 200px;
+}
+
+.live-progress-container {
+  overflow-y: auto;
+}
+
+.live-rank-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: white;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  font-size: 13px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s;
+}
+
+/* 24. 순위 아이템 레이아웃 */
+.rank-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #f7fafc;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  font-size: 13px;
+  border: 1px solid #e2e8f0;
+}
+
+/* 25. 한계 설정 아이템 레이아웃 */
+.limit-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+/* 26. 플레이어 진행률 아이템 레이아웃 */
+.player-progress-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.player-progress-item .player-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+/* 27. 모바일 반응형 레이아웃 */
+@media (max-width: 768px) {
+  /* 로그인 화면 모바일 */
+  .login-container {
+    padding: 32px 24px;
+    margin: 16px;
+  }
+
+  .feature-badges {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .badge {
+    width: 100%;
+    text-align: center;
+    padding: 16px 20px;
+  }
+
+  /* 게임 화면 모바일 */
+  #game-screen {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    /* 모바일에서는 좌측 사이드바, 메인, 우측 사이드바 세로로 나열 */
+  }
+
+  .left-sidebar {
+    grid-column: 1;
+    grid-row: 2; /* 헤더 다음 */
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
+    max-height: 200px; /* 높이 제한 및 스크롤 */
+  }
+
+  .main-game-content {
+    grid-column: 1;
+    grid-row: 3; /* 좌측 사이드바 다음 */
+  }
+
+  .right-sidebar {
+    grid-column: 1;
+    grid-row: 4; /* 메인 콘텐츠 다음 */
+    border-left: none;
+    border-top: 1px solid #e2e8f0;
+    max-height: 250px;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 15px;
+  }
+
+  .left-sidebar > div,
+  .right-sidebar > div {
+    min-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* 로그인 화면 초소형 모바일 */
+  .login-container {
+    padding: 24px 20px;
+  }
+}
+
+/* 28. 장식용 요소 레이아웃 */
+.decorative-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.decorative-elements::before,
+.decorative-elements::after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+}
+
+.decorative-elements::before {
+  top: -100px;
+  right: -100px;
+}
+
+.decorative-elements::after {
+  bottom: -100px;
+  left: -100px;
+}
+
+/* 29. 사이트 정보 상단 라인 */
+.site-info::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+/* 30. 메시지 헤더 레이아웃 */
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  gap: 8px;
+}

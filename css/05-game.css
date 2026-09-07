@@ -1,0 +1,538 @@
+/* ==================================================
+   05-game.css (게임 화면, 타이핑, 진행률, 결과)
+   ================================================= */
+
+/* 1. 게임 화면 그리드 레이아웃 */
+#game-screen {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* 좌측(1), 중앙(2), 우측(1) 비율 */
+  grid-template-rows: auto 1fr; /* 헤더 자동, 나머지 영역 1fr */
+  gap: 0;
+  height: 100%;
+}
+
+/* 2. 게임 헤더 - 전체 상단 */
+.game-header {
+  grid-column: 1 / -1; /* 전체 상단 차지 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8f9fa;
+}
+
+.game-header h2 {
+  margin: 0;
+  color: #2d3748;
+  font-size: 1.5rem;
+}
+
+.game-info {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  color: #718096;
+}
+
+/* 3. 메인 게임 콘텐츠 영역 */
+.main-game-content {
+  grid-column: 2; /* 두 번째 열 (중앙) */
+  grid-row: 2; /* 두 번째 행 */
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  background: white;
+}
+
+/* 4. 게임 상태 */
+.game-status {
+  text-align: center;
+}
+
+#waiting-message {
+  font-size: 16px;
+  color: #718096;
+  padding: 20px;
+  background: #f7fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+#start-game-section {
+  padding: 20px;
+  background: #f7fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.start-game-instructions {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* 5. 카운트다운 */
+#countdown {
+  font-size: 36px;
+  font-weight: 600;
+  color: #e53e3e;
+  padding: 20px;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+/* 6. 게임 텍스트 - 타이핑 영역 */
+#game-text {
+  font-size: 0; /* 자식 요소(span) 사이의 공백(white-space)으로 인한 간격을 제거합니다. */
+  line-height: 1.8;
+  padding: 24px;
+  background: #f7fafc;
+  border-radius: 8px;
+  min-height: 100px;
+  border: 2px solid #4299e1;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  box-shadow: 0 2px 8px rgba(66, 153, 225, 0.2);
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+
+/* 7. 게임 텍스트 문자 간격 및 폰트 크기 최적화 */
+#game-text > span {
+  font-size: 22px; /* 부모에서 0으로 설정된 폰트 크기를 복원하여 글자가 보이게 함 */
+  margin: 0;
+  padding: 1px 2px; /* 모든 글자에 소량의 패딩을 적용하여 간격 보정 방지 */
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+
+/* 8. 타이핑 영역 - 좌측 메인 영역의 중심! */
+.typing-area {
+  background: #f0fff4;
+  padding: 24px;
+  border-radius: 12px;
+  border: 3px solid #48bb78;
+  box-shadow: 0 4px 15px rgba(72, 187, 120, 0.2);
+}
+
+#typing-input {
+  width: 100%;
+  padding: 20px;
+  font-size: 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  transition: all 0.2s;
+  background: white;
+}
+
+#typing-input:focus {
+  outline: none;
+  border-color: #48bb78;
+  box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.1);
+}
+
+/* 9. 진행률 컨테이너 */
+.progress-container {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #48bb78;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+.progress-stats {
+  display: flex;
+  justify-content: space-around;
+  font-size: 16px;
+  color: #2d3748;
+  font-weight: 600;
+}
+
+/* 10. 게임 결과 */
+#game-result {
+  background: #f7fafc;
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.result-header h3 {
+  margin-bottom: 8px;
+  color: #2d3748;
+}
+
+.result-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* 11. Character Highlighting 기본 스타일 */
+.completed-char, .current-char, .error-char, .normal-char {
+  display: inline-block;
+  min-width: 1ch;
+  text-align: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+/* 12. Character Highlighting 상태별 스타일 */
+#game-text .completed-char {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+#game-text .current-char {
+  background: #fef5e7;
+  color: #744210;
+  box-shadow: 0 0 0 2px #ed8936;
+}
+
+#game-text .error-char {
+  background: #fed7d7;
+  color: #742a2a;
+}
+
+#game-text .normal-char {
+  background: transparent;
+  color: #4a5568;
+}
+
+/* 13. 실시간 진행률 그래프 및 UI 스타일 */
+.player-progress-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.player-progress-item .player-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.player-progress-item .player-name {
+  font-weight: bold;
+  color: #2d3748; /* 밝은 배경에 잘 보이도록 어두운 색으로 변경 */
+  text-shadow: none; /* 가독성을 위해 그림자 제거 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+}
+
+.player-percentage {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  color: #81c784; /* 밝은 녹색 */
+}
+
+/* 14. 진행률 바의 배경(틀) */
+.progress-bar-wrapper {
+  width: 100%;
+  height: 12px;
+  background-color: rgba(0, 0, 0, 0.3); /* 반투명한 어두운 배경 */
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* 15. 실제 진행률을 표현하는 바 */
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #81c784); /* 녹색 그라디언트 */
+  border-radius: 6px;
+  transition: width 0.2s ease-in-out; /* 상태 변경 시 부드러운 애니메이션 효과 */
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
+}
+
+/* 16. 현재 플레이어 순위 강조 */
+.final-rank-item.current-player {
+  background: linear-gradient(135deg, #48bb78, #38a169);
+  color: white;
+  border: 2px solid #2f855a;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 8px 0;
+}
+
+.final-rank-item.current-player strong {
+  color: #fff3cd;
+}
+
+/* 17. 최신 성과의 표시 */
+.final-rank-item.current-player div:first-child::after {
+  content: " 🏆";
+  animation: sparkle 2s infinite;
+}
+
+/* 18. 게임 관련 애니메이션 키프레임 */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* 19. 스크롤바 커스터마이징 */
+#game-text::-webkit-scrollbar {
+  height: 4px;
+}
+
+#game-text::-webkit-scrollbar-track {
+  background: #e2e8f0;
+  border-radius: 2px;
+}
+
+#game-text::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 2px;
+}
+
+/* 20. 버튼 스타일 (게임 결과 액션용) */
+.primary-btn {
+  background: #4299e1;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.primary-btn:hover:not(:disabled) {
+  background: #3182ce;
+}
+
+.secondary-btn {
+  background: #718096;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.secondary-btn:hover:not(:disabled) {
+  background: #4a5568;
+}
+
+/* 21. 로딩 및 빈 데이터 표시 */
+.no-data {
+  text-align: center;
+  color: #a0aec0;
+  font-style: italic;
+  padding: 20px;
+  font-size: 13px;
+}
+
+.loading {
+  text-align: center;
+  color: #a0aec0;
+  font-style: italic;
+  padding: 10px;
+  font-size: 13px;
+}
+
+/* 22. 모바일 반응형 (게임 화면) */
+@media (max-width: 768px) {
+  #game-screen {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    /* 모바일에서는 좌측 사이드바, 메인, 우측 사이드바 세로로 나열 */
+  }
+
+  .main-game-content {
+    grid-column: 1;
+    grid-row: 3; /* 좌측 사이드바 다음 */
+  }
+
+  #game-text {
+    font-size: 18px;
+    padding: 20px;
+  }
+
+  #game-text > span {
+    font-size: 18px;
+  }
+
+  #typing-input {
+    font-size: 18px;
+    padding: 16px;
+  }
+
+  #countdown {
+    font-size: 28px;
+  }
+
+  .typing-area {
+    padding: 20px;
+  }
+
+  .progress-stats {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-game-content {
+    padding: 16px;
+  }
+
+  #game-text {
+    padding: 16px;
+    font-size: 16px;
+  }
+
+  #game-text > span {
+    font-size: 16px;
+  }
+
+  #typing-input {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  .typing-area {
+    padding: 16px;
+  }
+
+  #countdown {
+    font-size: 24px;
+  }
+
+  .result-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* 23. 다크모드 지원 (게임 화면) */
+@media (prefers-color-scheme: dark) {
+  .main-game-content {
+    background: #1a202c;
+  }
+
+  .game-header {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+
+  .game-header h2 {
+    color: #f7fafc;
+  }
+
+  .game-info {
+    color: #a0aec0;
+  }
+
+  #waiting-message,
+  #start-game-section,
+  #game-result {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #f7fafc;
+  }
+
+  #game-text {
+    background: #2d3748;
+    border-color: #667eea;
+    color: #f7fafc;
+  }
+
+  #game-text .normal-char {
+    color: #a0aec0;
+  }
+
+  #typing-input {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #f7fafc;
+  }
+
+  .progress-container {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+
+  .progress-stats {
+    color: #f7fafc;
+  }
+}
+
+/* 24. 접근성 개선 */
+@media (prefers-reduced-motion: reduce) {
+  #countdown,
+  .completed-char,
+  .current-char,
+  .error-char,
+  .progress-bar-fill {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* 25. 포커스 상태 개선 */
+#typing-input:focus,
+.primary-btn:focus,
+.secondary-btn:focus {
+  outline: 2px solid #4299e1;
+  outline-offset: 2px;
+}

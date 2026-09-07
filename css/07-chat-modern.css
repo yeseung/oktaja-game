@@ -1,0 +1,757 @@
+/* ==================================================
+07-chat-modern.css (Beautiful Text Focused Design)
+================================================= */
+
+/* 1. 아름다운 컬러 팔레트 - 소프트 엘레강스 */
+:root {
+  --bg-primary: #fdfcff; /* 순백 라벤더 */
+  --bg-secondary: #f8f6ff; /* 연한 라벤더 */
+  --bg-card: #ffffff; /* 순백 */
+  --text-primary: #2d1b69; /* 딥 퍼플 */
+  --text-secondary: #6b46c1; /* 미디엄 퍼플 */
+  --text-muted: #8b5cf6; /* 라이트 퍼플 */
+  --accent-primary: #ec4899; /* 로즈 핑크 */
+  --accent-secondary: #a855f7; /* 바이올렛 */
+  --accent-light: #fce7f3; /* 블러시 핑크 */
+  --gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  --gradient-soft: linear-gradient(135deg, #ffeef8 0%, #f3e8ff 100%);
+  --shadow-soft: 0 4px 20px rgba(139, 92, 246, 0.1);
+  --shadow-hover: 0 8px 30px rgba(139, 92, 246, 0.15);
+  }
+  
+  /* 2. 메인 채팅 컨테이너 - 우아한 카드 */
+  .chat-section {
+  background: var(--bg-card);
+  border-radius: 24px;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  height: 480px;
+  overflow: hidden;
+  position: relative;
+  backdrop-filter: blur(10px);
+  }
+  
+  .chat-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-soft);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+  }
+  
+  /* 3. 채팅 헤더 - 우아한 그라디언트 */
+  .chat-header {
+  background: var(--gradient-main);
+  padding: 20px 28px;
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(20px);
+  }
+  
+  .chat-header h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.02em;
+  }
+  
+  .chat-header h4::before {
+  content: '✨';
+  font-size: 20px;
+  animation: sparkle 2s ease-in-out infinite;
+  }
+  
+  .chat-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  }
+  
+  .online-indicator {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+  animation: gentle-pulse 2s infinite;
+  }
+  
+  /* 4. 메시지 컨테이너 - 부드러운 배경 */
+  .chat-messages-container {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  scroll-behavior: smooth;
+  }
+  
+  /* 5. 개별 메시지 - 플로팅 디자인 */
+  .chat-message {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  animation: messageAppear 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  }
+  
+  .chat-message.my-message {
+  align-items: flex-end;
+  }
+  
+  .chat-message.other-message {
+  align-items: flex-start;
+  }
+  
+  /* 6. 메시지 정보 - 세련된 타이포그래피 */
+  .message-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+  }
+  
+  .chat-message.my-message .message-info {
+  flex-direction: row-reverse;
+  }
+  
+  .chat-username {
+  font-weight: 600;
+  color: var(--accent-secondary);
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.01em;
+  }
+  
+  .chat-message.my-message .chat-username {
+  color: var(--accent-primary);
+  }
+  
+  .message-time {
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0.8;
+  font-weight: 400;
+  }
+  
+  /* 7. 메시지 카드 - 아름다운 텍스트 강조 */
+  .message-content {
+  position: relative;
+  max-width: 320px;
+  min-width: 80px;
+  padding: 16px 20px;
+  border-radius: 20px;
+  font-size: 15px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  /* 8. 다른 사람 메시지 - 우아한 화이트 카드 */
+  .chat-message.other-message .message-content {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid rgba(139, 92, 246, 0.1);
+  box-shadow:
+  0 2px 12px rgba(139, 92, 246, 0.08),
+  0 1px 3px rgba(0, 0, 0, 0.05);
+  border-bottom-left-radius: 8px;
+  margin-left: 8px;
+  position: relative;
+  }
+  
+  .chat-message.other-message .message-content::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  bottom: 12px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 10px solid var(--bg-card);
+  filter: drop-shadow(-1px 0 1px rgba(139, 92, 246, 0.1));
+  }
+  
+  /* 9. 내 메시지 - 그라디언트 카드 */
+  .chat-message.my-message .message-content {
+  background: var(--gradient-main);
+  color: white;
+  box-shadow:
+  0 4px 16px rgba(139, 92, 246, 0.2),
+  0 2px 8px rgba(236, 72, 153, 0.1);
+  border-bottom-right-radius: 8px;
+  margin-right: 8px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  }
+  
+  .chat-message.my-message .message-content::before {
+  content: '';
+  position: absolute;
+  right: -8px;
+  bottom: 12px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 10px solid #764ba2;
+  }
+  
+  /* 10. 호버 효과 - 텍스트 강조 */
+  .message-content:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  }
+  
+  .chat-message.other-message .message-content:hover {
+  border-color: rgba(139, 92, 246, 0.2);
+  }
+  
+  /* 11. 채팅 입력 영역 - 미니멀 우아함 */
+  .chat-input-container {
+  background: var(--bg-card);
+  border-top: 1px solid rgba(139, 92, 246, 0.1);
+  padding: 0;
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(10px);
+  }
+  
+  .chat-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 28px;
+  position: relative;
+  }
+  
+  /* 12. 입력 필드 - 부드러운 포커스 */
+  .input-line {
+  flex: 1;
+  position: relative;
+  }
+  
+  #chat-input {
+  width: 100%;
+  background: var(--bg-secondary);
+  border: 2px solid rgba(139, 92, 246, 0.1);
+  border-radius: 20px;
+  padding: 14px 20px;
+  color: var(--text-primary);
+  font-size: 15px;
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  line-height: 1.4;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  resize: none;
+  min-height: 24px;
+  max-height: 80px;
+  }
+  
+  #chat-input:focus {
+  outline: none;
+  border-color: var(--accent-secondary);
+  background: var(--bg-card);
+  box-shadow:
+  0 0 0 4px rgba(168, 85, 247, 0.1),
+  0 2px 12px rgba(139, 92, 246, 0.15);
+  transform: translateY(-1px);
+  }
+  
+  #chat-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+  font-weight: 400;
+  }
+  
+  /* 13. 버튼 컨테이너 - 우아한 배치 */
+  .button-line {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  }
+  
+  /* 14. 이모티콘 버튼 - 부드러운 호버 */
+  .emoticon-btn {
+  width: 48px;
+  height: 48px;
+  background: var(--bg-secondary);
+  border: 2px solid rgba(139, 92, 246, 0.1);
+  border-radius: 50%;
+  color: var(--accent-secondary);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  }
+  
+  .emoticon-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-main);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+  }
+  
+  .emoticon-btn:hover {
+  transform: scale(1.05);
+  border-color: var(--accent-secondary);
+  box-shadow: 0 4px 16px rgba(168, 85, 247, 0.2);
+  }
+  
+  .emoticon-btn:hover::before {
+  opacity: 1;
+  }
+  
+  .emoticon-btn:hover {
+  color: white;
+  }
+  
+  /* 15. 전송 버튼 - 그라디언트 아름다움 */
+  #send-chat-btn {
+  width: 48px;
+  height: 48px;
+  background: var(--gradient-main);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow:
+  0 4px 16px rgba(139, 92, 246, 0.3),
+  0 2px 8px rgba(236, 72, 153, 0.2);
+  position: relative;
+  overflow: hidden;
+  }
+  
+  #send-chat-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+  transparent,
+  rgba(255, 255, 255, 0.3),
+  transparent);
+  transition: left 0.6s;
+  }
+  
+  #send-chat-btn:hover {
+  transform: scale(1.05);
+  box-shadow:
+  0 6px 20px rgba(139, 92, 246, 0.4),
+  0 3px 12px rgba(236, 72, 153, 0.3);
+  }
+  
+  #send-chat-btn:hover::before {
+  left: 100%;
+  }
+  
+  #send-chat-btn svg {
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  }
+  
+  /* 16. 이모티콘 피커 - 우아한 패널 */
+  .emoticon-picker-wrapper {
+  position: relative;
+  }
+  
+  .emoticon-picker {
+  position: absolute;
+  bottom: 100%;
+  left: -140px;
+  width: 340px;
+  background: var(--bg-card);
+  border: 1px solid rgba(139, 92, 246, 0.1);
+  border-radius: 20px;
+  box-shadow:
+  0 12px 32px rgba(139, 92, 246, 0.15),
+  0 4px 16px rgba(0, 0, 0, 0.05);
+  margin-bottom: 16px;
+  overflow: hidden;
+  z-index: 1000;
+  backdrop-filter: blur(20px);
+  animation: pickerAppear 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .emoticon-picker.hidden {
+  display: none;
+  }
+  
+  .emoticon-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: var(--gradient-soft);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  
+  .close-picker {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: 1px solid rgba(236, 72, 153, 0.2);
+  border-radius: 50%;
+  color: var(--accent-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  font-weight: 600;
+  }
+  
+  .close-picker:hover {
+  background: var(--accent-light);
+  border-color: var(--accent-primary);
+  transform: rotate(90deg) scale(1.1);
+  }
+  
+  /* 17. 이모티콘 그리드 - 부드러운 인터랙션 */
+  .emoticon-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  padding: 20px 24px;
+  max-height: 220px;
+  overflow-y: auto;
+  }
+  
+  .emoticon-item {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  border: 1px solid rgba(139, 92, 246, 0.1);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  }
+  
+  .emoticon-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-main);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 12px;
+  }
+  
+  .emoticon-item:hover {
+  transform: scale(1.1);
+  border-color: var(--accent-secondary);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.2);
+  }
+  
+  .emoticon-item:hover::before {
+  opacity: 0.1;
+  }
+  
+  /* 18. 글자 카운터 - 세련된 배지 */
+  .chat-footer {
+  display: flex;
+  justify-content: center;
+  padding: 16px 28px 20px;
+  background: var(--bg-card);
+  position: relative;
+  z-index: 2;
+  }
+  
+  .char-counter {
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  border: 1px solid rgba(139, 92, 246, 0.1);
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-weight: 500;
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+  backdrop-filter: blur(5px);
+  }
+  
+  .char-counter.warning {
+  color: #f59e0b;
+  background: #fef3c7;
+  border-color: #f59e0b;
+  }
+  
+  .char-counter.danger {
+  color: #ef4444;
+  background: #fee2e2;
+  border-color: #ef4444;
+  animation: gentle-shake 0.5s ease-in-out;
+  }
+  
+  /* 19. 빈 상태 - 아름다운 메시지 */
+  .no-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-muted);
+  font-size: 15px;
+  text-align: center;
+  gap: 12px;
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  }
+  
+  .no-data::before {
+  content: '💭';
+  font-size: 48px;
+  opacity: 0.6;
+  animation: float 3s ease-in-out infinite;
+  }
+  
+  /* 20. 애니메이션 키프레임 */
+  @keyframes sparkle {
+  0%, 100% {
+  opacity: 1;
+  transform: scale(1);
+  }
+  50% {
+  opacity: 0.8;
+  transform: scale(1.1);
+  }
+  }
+  
+  @keyframes gentle-pulse {
+  0%, 100% {
+  opacity: 1;
+  transform: scale(1);
+  }
+  50% {
+  opacity: 0.7;
+  transform: scale(1.1);
+  }
+  }
+  
+  @keyframes messageAppear {
+  from {
+  opacity: 0;
+  transform: translateY(15px) scale(0.95);
+  }
+  to {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  }
+  }
+  
+  @keyframes pickerAppear {
+  from {
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+  }
+  to {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  }
+  }
+  
+  @keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  }
+  
+  @keyframes gentle-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+  }
+  
+  /* 21. 스크롤바 - 우아한 스타일 */
+  .chat-messages-container::-webkit-scrollbar {
+  width: 6px;
+  }
+  
+  .chat-messages-container::-webkit-scrollbar-track {
+  background: transparent;
+  }
+  
+  .chat-messages-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom,
+  var(--accent-secondary),
+  var(--accent-primary));
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(168, 85, 247, 0.3);
+  }
+  
+  .chat-messages-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom,
+  var(--accent-primary),
+  var(--accent-secondary));
+  }
+  
+  .emoticon-grid::-webkit-scrollbar {
+  width: 4px;
+  }
+  
+  .emoticon-grid::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  }
+  
+  .emoticon-grid::-webkit-scrollbar-thumb {
+  background: var(--accent-secondary);
+  border-radius: 2px;
+  }
+  
+  /* 22. 모바일 반응형 */
+  @media (max-width: 768px) {
+  .chat-section {
+  height: 420px;
+  border-radius: 20px;
+  margin: 0 12px;
+  }
+  
+  .chat-header {
+  padding: 16px 24px;
+  }
+  
+  .chat-messages-container {
+  padding: 20px;
+  }
+  
+  .message-content {
+  max-width: 260px;
+  font-size: 14px;
+  padding: 14px 18px;
+  }
+  
+  .chat-input-wrapper {
+  padding: 16px 24px;
+  gap: 12px;
+  }
+  
+  #chat-input {
+  font-size: 16px; /* iOS 줌 방지 */
+  padding: 12px 18px;
+  }
+  
+  .emoticon-btn,
+  #send-chat-btn {
+  width: 44px;
+  height: 44px;
+  }
+  
+  .emoticon-picker {
+  width: 300px;
+  left: -120px;
+  }
+  
+  .emoticon-grid {
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  padding: 16px 20px;
+  }
+  
+  .emoticon-item {
+  font-size: 20px;
+  }
+  }
+  
+  @media (max-width: 480px) {
+  .message-content {
+  max-width: 220px;
+  padding: 12px 16px;
+  }
+  
+  .emoticon-btn,
+  #send-chat-btn {
+  width: 40px;
+  height: 40px;
+  }
+  
+  .emoticon-picker {
+  width: 260px;
+  left: -100px;
+  }
+  }
+  
+  /* 23. 다크모드 지원 */
+  @media (prefers-color-scheme: dark) {
+  :root {
+  --bg-primary: #1a1625;
+  --bg-secondary: #2a1f3d;
+  --bg-card: #241b37;
+  --text-primary: #e5e3ff;
+  --text-secondary: #c4b5fd;
+  --text-muted: #a78bfa;
+  --accent-light: #3b1a3b;
+  }
+  
+  .chat-message.other-message .message-content {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-color: rgba(168, 85, 247, 0.2);
+  }
+  
+  .no-data {
+  color: var(--text-secondary);
+  }
+  }
+  
+  /* 24. 접근성 개선 */
+  @media (prefers-reduced-motion: reduce) {
+  * {
+  animation: none !important;
+  transition: none !important;
+  }
+  }
+  
+  /* 25. 포커스 상태 - 우아한 아웃라인 */
+  .emoticon-btn:focus,
+  #send-chat-btn:focus,
+  #chat-input:focus,
+  .emoticon-item:focus {
+  outline: 2px solid var(--accent-secondary);
+  outline-offset: 2px;
+  }
+  
